@@ -22,13 +22,11 @@
             margin: 0 auto;
         }
 
-        /* Centered title section */
+        /* Title section */
         .title-section {
             text-align: center;
-            margin-bottom: 60px; /* Increased margin to provide buffer space */
+            margin-bottom: 40px;
             padding: 20px 0;
-            position: relative;
-            z-index: 200; /* Ensure title stays above grid animations */
         }
 
         .title-section h1 {
@@ -46,21 +44,34 @@
             font-weight: 400;
         }
 
+        /* Grid container */
         .image-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
+            flex-direction: column;
             gap: 0;
-            width: 100%;
-            margin-top: 40px; /* Additional spacing from title */
-            padding-bottom: 80px; /* Add padding to prevent bottom row overlap */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: visible; /* Changed from hidden to visible */
+            padding-bottom: 80px; /* Add padding to accommodate project names */
         }
 
-        .grid-item {
+        /* Each row container */
+        .grid-row {
+            display: flex;
+            width: 100%;
             position: relative;
-            overflow: visible;
-            aspect-ratio: 1;
             transition: all 0.3s ease;
             cursor: pointer;
+            overflow: visible; /* Ensure project names can show outside the row */
+            margin-bottom: 20px; /* Add space between rows for project names */
+        }
+
+        /* Individual grid items within a row */
+        .grid-item {
+            flex: 1;
+            aspect-ratio: 1;
+            position: relative;
+            overflow: visible; /* Allow project names to extend outside */
         }
 
         .grid-item img,
@@ -71,7 +82,6 @@
             display: block;
             border: none;
             outline: none;
-            transition: opacity 0.3s ease;
         }
 
         /* Project name label - only for middle items */
@@ -91,45 +101,34 @@
         }
         
         /* Hide project names on first and third items of each row */
-        .grid-item:nth-child(3n-2) .project-name,
-        .grid-item:nth-child(3n) .project-name {
+        .grid-item:first-child .project-name,
+        .grid-item:last-child .project-name {
             display: none;
         }
 
-        /* Row states */
-        .row-active .grid-item {
+        /* Row hover states */
+        .image-grid.has-hover .grid-row {
             opacity: 0.3;
         }
 
-        .row-active .grid-item.active-row-item {
+        .image-grid.has-hover .grid-row.row-hovered {
             opacity: 1;
-            /* Reduced upward movement to prevent title obstruction */
             transform: translateY(-15px);
-            margin-bottom: 70px; /* Increased margin to prevent row overlap */
+            margin-bottom: 90px; /* Increased margin to accommodate project name */
         }
 
-        /* Special handling for first row to prevent title obstruction */
-        .row-active .grid-item:nth-child(1).active-row-item,
-        .row-active .grid-item:nth-child(2).active-row-item,
-        .row-active .grid-item:nth-child(3).active-row-item {
-            /* First row moves down instead of up to avoid title */
-            transform: translateY(10px);
-            margin-bottom: 70px; /* Consistent spacing for first row */
-        }
-
-        .row-active .grid-item.active-row-item .project-name {
+        .image-grid .grid-row.row-hovered .project-name {
             opacity: 1;
-        }
-        
-        /* Ensure only the middle item of the active row shows the title */
-        .row-active .grid-item:not(.active-row-item) .project-name {
-            opacity: 0;
         }
 
         /* Responsive design */
         @media (max-width: 768px) {
-            .image-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .grid-row {
+                flex-wrap: wrap;
+            }
+            
+            .grid-item {
+                flex: 0 0 50%;
             }
             
             .title-section h1 {
@@ -142,8 +141,8 @@
         }
 
         @media (max-width: 480px) {
-            .image-grid {
-                grid-template-columns: 1fr;
+            .grid-item {
+                flex: 0 0 100%;
             }
             
             body {
@@ -153,138 +152,87 @@
             .title-section h1 {
                 font-size: 1.8em;
             }
-            
-            .title-section {
-                margin-bottom: 40px;
-            }
-        }
-
-        /* Optional: Add a subtle shadow to the entire grid */
-        .image-grid {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: visible;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="title-section">
-            <h1>Three-Column Image Grid</h1>
-            <p>Images and videos displayed in rows of three with no borders</p>
+            <h1>Ethan Thompson</h1>
+            <p>projects and affiliated works</p>
         </div>
         
         <div class="image-grid" id="imageGrid">
             <!-- Row 1 -->
-            <div class="grid-item" data-project="The Feast Project" data-video="dQw4w9WgXcQ">
-                <img src="assets/theFeast2_borders.png" alt="The Feast Screenshot 1" onerror="this.style.backgroundColor='#ddd'; this.alt='Image not found: assets/theFeastScreenshot.png'">
-                <div class="project-name">The Feast Project</div>
-            </div>
-            <div class="grid-item" data-project="The Feast Project" data-video="lJh81aj_yEA&t=526s">
-                <img src="assets/theFeast2.png" alt="The Feast Screenshot 2" onerror="this.style.backgroundColor='#ddd'; this.alt='Image not found: assets/theFeastScreenshot.png'">
-                <div class="project-name">The Feast Project</div>
-            </div>
-            <div class="grid-item" data-project="The Feast Project" data-video="lJh81aj_yEA&t=526s">
-                <img src="assets/theFeast2_borders.png" alt="The Feast Screenshot 3" onerror="this.style.backgroundColor='#ddd'; this.alt='Image not found: assets/theFeastScreenshot.png'">
-                <div class="project-name">The Feast Project</div>
+            <div class="grid-row" data-project="The Feast Project" data-video="dQw4w9WgXcQ">
+                <div class="grid-item">
+                    <img src="assets/theFeast2_borders.png" alt="The Feast Screenshot 1" onerror="this.style.backgroundColor='#ddd'; this.alt='Image not found: assets/theFeastScreenshot.png'">
+                </div>
+                <div class="grid-item">
+                    <img src="assets/theFeast2.png" alt="The Feast Screenshot 2" onerror="this.style.backgroundColor='#ddd'; this.alt='Image not found: assets/theFeastScreenshot.png'">
+                    <div class="project-name">The Feast Project</div>
+                </div>
+                <div class="grid-item">
+                    <img src="assets/theFeast2_borders.png" alt="The Feast Screenshot 3" onerror="this.style.backgroundColor='#ddd'; this.alt='Image not found: assets/theFeastScreenshot.png'">
+                </div>
             </div>
             
             <!-- Row 2 -->
-            <div class="grid-item" data-project="Another Project" data-video="lJh81aj_yEA&t=526s">
-                <img src="https://picsum.photos/400/400?random=4" alt="Project 2 Image 1">
-                <div class="project-name">Another Project</div>
-            </div>
-            <div class="grid-item" data-project="Another Project" data-video="jNQXAC9IVRw">
-                <img src="https://picsum.photos/400/400?random=5" alt="Project 2 Image 2">
-                <div class="project-name">Another Project</div>
-            </div>
-            <div class="grid-item" data-project="Another Project" data-video="lJh81aj_yEA&t=526s">
-                <img src="https://picsum.photos/400/400?random=6" alt="Project 2 Image 3">
-                <div class="project-name">Another Project</div>
+            <div class="grid-row" data-project="Another Project" data-video="lJh81aj_yEA&t=526s">
+                <div class="grid-item">
+                    <img src="https://picsum.photos/400/400?random=4" alt="Project 2 Image 1">
+                </div>
+                <div class="grid-item">
+                    <img src="https://picsum.photos/400/400?random=5" alt="Project 2 Image 2">
+                    <div class="project-name">Another Project</div>
+                </div>
+                <div class="grid-item">
+                    <img src="https://picsum.photos/400/400?random=6" alt="Project 2 Image 3">
+                </div>
             </div>
             
             <!-- Row 3 -->
-            <div class="grid-item" data-project="Third Project" data-video="lJh81aj_yEA&t=526s">
-                <img src="https://picsum.photos/400/400?random=7" alt="Project 3 Image 1">
-                <div class="project-name">Third Project</div>
-            </div>
-            <div class="grid-item" data-project="Third Project" data-video="lJh81aj_yEA&t=526s">
-                <img src="https://picsum.photos/400/400?random=8" alt="Project 3 Image 2">
-                <div class="project-name">Third Project</div>
-            </div>
-            <div class="grid-item" data-project="Third Project" data-video="9bZkp7q19f0">
-                <img src="https://picsum.photos/400/400?random=9" alt="Project 3 Image 3">
-                <div class="project-name">Third Project</div>
+            <div class="grid-row" data-project="Third Project" data-video="lJh81aj_yEA&t=526s">
+                <div class="grid-item">
+                    <img src="https://picsum.photos/400/400?random=7" alt="Project 3 Image 1">
+                </div>
+                <div class="grid-item">
+                    <img src="https://picsum.photos/400/400?random=8" alt="Project 3 Image 2">
+                    <div class="project-name">Third Project</div>
+                </div>
+                <div class="grid-item">
+                    <img src="https://picsum.photos/400/400?random=9" alt="Project 3 Image 3">
+                </div>
             </div>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const grid = document.getElementById('imageGrid');
-            const gridItems = document.querySelectorAll('.grid-item');
+            const imageGrid = document.getElementById('imageGrid');
+            const gridRows = document.querySelectorAll('.grid-row');
             
-            // Calculate which items are in the same row
-            function getRowItems(hoveredIndex) {
-                const rowIndex = Math.floor(hoveredIndex / 3);
-                const rowStart = rowIndex * 3;
-                const rowEnd = rowStart + 3;
-                
-                return Array.from(gridItems).slice(rowStart, rowEnd);
-            }
-            
-            // Check if any item in a row is being hovered
-            function isRowHovered(rowItems) {
-                return rowItems.some(item => item.matches(':hover'));
-            }
-            
-            // Add hover events to each grid item
-            gridItems.forEach((item, index) => {
-                item.addEventListener('mouseenter', function() {
-                    const rowItems = getRowItems(index);
-                    
-                    // Only activate if row is actually being hovered
-                    if (isRowHovered(rowItems)) {
-                        // Add active state to grid
-                        grid.classList.add('row-active');
-                        
-                        // Add active class to row items
-                        rowItems.forEach(rowItem => {
-                            rowItem.classList.add('active-row-item');
-                        });
-                    }
+            // Add hover events to each row
+            gridRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    imageGrid.classList.add('has-hover');
+                    this.classList.add('row-hovered');
                 });
                 
-                item.addEventListener('mouseleave', function() {
-                    const rowItems = getRowItems(index);
-                    
-                    // Small delay to check if we're still in the row
-                    setTimeout(() => {
-                        // Only deactivate if no items in the row are being hovered
-                        if (!isRowHovered(rowItems)) {
-                            grid.classList.remove('row-active');
-                            rowItems.forEach(rowItem => {
-                                rowItem.classList.remove('active-row-item');
-                            });
-                        }
-                    }, 10);
+                row.addEventListener('mouseleave', function() {
+                    imageGrid.classList.remove('has-hover');
+                    this.classList.remove('row-hovered');
                 });
-                
-                // Add click event to navigate to video page
-                item.addEventListener('click', function() {
+            });
+            
+            // Add click events to each row
+            gridRows.forEach(row => {
+                row.addEventListener('click', function() {
                     const projectName = this.getAttribute('data-project');
                     const videoId = this.getAttribute('data-video');
                     
                     // Navigate to video page with parameters
                     window.location.href = `videos/theFeast.html?project=${encodeURIComponent(projectName)}&video=${videoId}`;
-                });
-            });
-            
-            // Clean up when mouse leaves the entire grid
-            grid.addEventListener('mouseleave', function() {
-                grid.classList.remove('row-active');
-                gridItems.forEach(item => {
-                    item.classList.remove('active-row-item');
                 });
             });
         });
