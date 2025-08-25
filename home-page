@@ -156,24 +156,24 @@
         <div class="image-grid">
             <!-- Row 1 -->
             <div class="grid-item">
-                <img src="https://picsum.photos/400/400?random=1" alt="Sample Image 1">
+                <img src="assets/theFeastScreenshot.png" alt="Sample Image 1">
             </div>
             <div class="grid-item">
-                <img src="https://picsum.photos/400/400?random=2" alt="Sample Image 2">
+                <img src="assets/theFeastScreenshot.png" alt="Sample Image 2">
             </div>
             <div class="grid-item">
-                <img src="https://picsum.photos/400/400?random=3" alt="Sample Image 3">
+                <img src="assets/theFeastScreenshot.png" alt="Sample Image 3">
             </div>
             
             <!-- Row 2 -->
             <div class="grid-item">
-                <img src="https://picsum.photos/400/400?random=4" alt="Sample Image 4">
+                <img src="assets/theFeastScreenshot.png" alt="Sample Image 4">
             </div>
             <div class="grid-item">
-                <img src="https://picsum.photos/400/400?random=5" alt="Sample Image 5">
+                <img src="assets/theFeastScreenshot.png" alt="Sample Image 5">
             </div>
             <div class="grid-item">
-                <img src="https://picsum.photos/400/400?random=6" alt="Sample Image 6">
+                <img src="assets/theFeastScreenshot.png" alt="Sample Image 6">
             </div>
             
             <!-- Row 3 - Mixed content example -->
