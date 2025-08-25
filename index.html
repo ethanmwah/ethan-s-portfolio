@@ -77,6 +77,7 @@
         .row-active .grid-item.active-row-item {
             opacity: 1;
             transform: translateY(-20px);
+            margin-bottom: 40px; /* Double spacing for row below */
         }
 
         .row-active .grid-item.active-row-item .project-name {
@@ -178,28 +179,38 @@
                 return Array.from(gridItems).slice(rowStart, rowEnd);
             }
             
+            // Check if any item in a row is being hovered
+            function isRowHovered(rowItems) {
+                return rowItems.some(item => item.matches(':hover'));
+            }
+            
             // Add hover events to each grid item
             gridItems.forEach((item, index) => {
                 item.addEventListener('mouseenter', function() {
-                    // Add active state to grid
-                    grid.classList.add('row-active');
-                    
-                    // Get all items in the same row
                     const rowItems = getRowItems(index);
                     
-                    // Add active class to row items
-                    rowItems.forEach(rowItem => {
-                        rowItem.classList.add('active-row-item');
-                    });
+                    // Only activate if row is actually being hovered
+                    if (isRowHovered(rowItems)) {
+                        // Add active state to grid
+                        grid.classList.add('row-active');
+                        
+                        // Add active class to row items
+                        rowItems.forEach(rowItem => {
+                            rowItem.classList.add('active-row-item');
+                        });
+                    }
                 });
                 
                 item.addEventListener('mouseleave', function() {
-                    // Small delay to prevent flickering when moving between items in same row
+                    const rowItems = getRowItems(index);
+                    
+                    // Small delay to check if we're still in the row
                     setTimeout(() => {
-                        if (!grid.matches(':hover')) {
+                        // Only deactivate if no items in the row are being hovered
+                        if (!isRowHovered(rowItems)) {
                             grid.classList.remove('row-active');
-                            gridItems.forEach(item => {
-                                item.classList.remove('active-row-item');
+                            rowItems.forEach(rowItem => {
+                                rowItem.classList.remove('active-row-item');
                             });
                         }
                     }, 10);
