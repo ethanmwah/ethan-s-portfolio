@@ -22,11 +22,34 @@
             margin: 0 auto;
         }
 
+        /* Centered title section */
+        .title-section {
+            text-align: center;
+            margin-bottom: 60px; /* Increased margin to provide buffer space */
+            padding: 20px 0;
+            position: relative;
+            z-index: 200; /* Ensure title stays above grid animations */
+        }
+
+        .title-section h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .title-section p {
+            font-size: 1.2em;
+            color: #666;
+            font-weight: 400;
+        }
+
         .image-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 0;
             width: 100%;
+            margin-top: 40px; /* Additional spacing from title */
         }
 
         .grid-item {
@@ -77,8 +100,18 @@
 
         .row-active .grid-item.active-row-item {
             opacity: 1;
-            transform: translateY(-20px);
-            margin-bottom: 60px; /* (40px / 2) * 3 = 60px */
+            /* Reduced upward movement to prevent title obstruction */
+            transform: translateY(-15px);
+            margin-bottom: 45px; /* Adjusted margin */
+        }
+
+        /* Special handling for first row to prevent title obstruction */
+        .row-active .grid-item:nth-child(1).active-row-item,
+        .row-active .grid-item:nth-child(2).active-row-item,
+        .row-active .grid-item:nth-child(3).active-row-item {
+            /* First row moves down instead of up to avoid title */
+            transform: translateY(10px);
+            margin-bottom: 30px;
         }
 
         .row-active .grid-item.active-row-item .project-name {
@@ -95,6 +128,14 @@
             .image-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .title-section h1 {
+                font-size: 2em;
+            }
+            
+            .title-section p {
+                font-size: 1em;
+            }
         }
 
         @media (max-width: 480px) {
@@ -104,6 +145,14 @@
             
             body {
                 padding: 10px;
+            }
+            
+            .title-section h1 {
+                font-size: 1.8em;
+            }
+            
+            .title-section {
+                margin-bottom: 40px;
             }
         }
 
@@ -117,13 +166,14 @@
 </head>
 <body>
     <div class="container">
-        <h1>Three-Column Image Grid</h1>
-        <p>Images and videos displayed in rows of three with no borders</p>
-        <br>
+        <div class="title-section">
+            <h1>Ethan Thompson Portfolio</h1>
+            <p>Projects and associated content.</p>
+        </div>
         
         <div class="image-grid" id="imageGrid">
             <!-- Row 1 -->
-            <div class="grid-item" data-project="The Feast Project" data-video="dQw4w9WgXcQ">
+            <div class="grid-item" data-project="The Feast Project" data-video="lJh81aj_yEA&t=526s">
                 <img src="assets/theFeast2_borders.png" alt="The Feast Screenshot 1" onerror="this.style.backgroundColor='#ddd'; this.alt='Image not found: assets/theFeastScreenshot.png'">
                 <div class="project-name">The Feast Project</div>
             </div>
