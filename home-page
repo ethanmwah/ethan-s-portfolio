@@ -33,6 +33,7 @@
             position: relative;
             overflow: hidden;
             aspect-ratio: 1; /* Makes items square */
+            transition: all 0.3s ease;
         }
 
         .grid-item img,
@@ -45,11 +46,80 @@
             outline: none;
         }
 
-        /* Hover effect for better interaction */
+        /* Row hover effects */
+        .image-grid:hover .grid-item {
+            opacity: 0.3;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* When hovering over a specific item, highlight its entire row */
         .grid-item:hover {
-            transform: scale(1.02);
-            transition: transform 0.3s ease;
+            opacity: 1 !important;
+            transform: scale(1.05);
             z-index: 10;
+        }
+
+        /* Highlight the entire row when hovering over any item in that row */
+        .grid-item:nth-child(3n-2):hover ~ .grid-item:nth-child(3n-1),
+        .grid-item:nth-child(3n-2):hover ~ .grid-item:nth-child(3n),
+        .grid-item:nth-child(3n-1):hover ~ .grid-item:nth-child(3n),
+        .grid-item:nth-child(3n-1):hover + .grid-item:nth-child(3n-2),
+        .grid-item:nth-child(3n):hover + .grid-item:nth-child(3n-1) + .grid-item:nth-child(3n-2),
+        .grid-item:nth-child(3n):hover + .grid-item:nth-child(3n-1) {
+            opacity: 1 !important;
+            transform: scale(1.05);
+        }
+
+        /* More precise row targeting */
+        .grid-item:nth-child(1):hover,
+        .grid-item:nth-child(2):hover,
+        .grid-item:nth-child(3):hover {
+            opacity: 1 !important;
+            transform: scale(1.05);
+        }
+
+        .grid-item:nth-child(1):hover ~ .grid-item:nth-child(2),
+        .grid-item:nth-child(1):hover ~ .grid-item:nth-child(3),
+        .grid-item:nth-child(2):hover ~ .grid-item:nth-child(3),
+        .grid-item:nth-child(2):hover + .grid-item:nth-child(1),
+        .grid-item:nth-child(3):hover + .grid-item:nth-child(2) + .grid-item:nth-child(1),
+        .grid-item:nth-child(3):hover + .grid-item:nth-child(2) {
+            opacity: 1 !important;
+            transform: scale(1.05);
+        }
+
+        .grid-item:nth-child(4):hover,
+        .grid-item:nth-child(5):hover,
+        .grid-item:nth-child(6):hover {
+            opacity: 1 !important;
+            transform: scale(1.05);
+        }
+
+        .grid-item:nth-child(4):hover ~ .grid-item:nth-child(5),
+        .grid-item:nth-child(4):hover ~ .grid-item:nth-child(6),
+        .grid-item:nth-child(5):hover ~ .grid-item:nth-child(6),
+        .grid-item:nth-child(5):hover + .grid-item:nth-child(4),
+        .grid-item:nth-child(6):hover + .grid-item:nth-child(5) + .grid-item:nth-child(4),
+        .grid-item:nth-child(6):hover + .grid-item:nth-child(5) {
+            opacity: 1 !important;
+            transform: scale(1.05);
+        }
+
+        .grid-item:nth-child(7):hover,
+        .grid-item:nth-child(8):hover,
+        .grid-item:nth-child(9):hover {
+            opacity: 1 !important;
+            transform: scale(1.05);
+        }
+
+        .grid-item:nth-child(7):hover ~ .grid-item:nth-child(8),
+        .grid-item:nth-child(7):hover ~ .grid-item:nth-child(9),
+        .grid-item:nth-child(8):hover ~ .grid-item:nth-child(9),
+        .grid-item:nth-child(8):hover + .grid-item:nth-child(7),
+        .grid-item:nth-child(9):hover + .grid-item:nth-child(8) + .grid-item:nth-child(7),
+        .grid-item:nth-child(9):hover + .grid-item:nth-child(8) {
+            opacity: 1 !important;
+            transform: scale(1.05);
         }
 
         /* Responsive design */
