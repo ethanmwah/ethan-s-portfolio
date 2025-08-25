@@ -123,43 +123,43 @@
         
         <div class="image-grid" id="imageGrid">
             <!-- Row 1 -->
-            <div class="grid-item" data-project="The Feast Project">
-                <img src="assets/theFeast2_borders.png" alt="The Feast Screenshot 1" onerror="this.style.backgroundColor='#ddd'; this.alt='Image not found: assets/theFeastScreenshot.png'">
+            <div class="grid-item" data-project="The Feast Project" data-video="dQw4w9WgXcQ">
+                <img src="assets/theFeastScreenshot.png" alt="The Feast Screenshot 1" onerror="this.style.backgroundColor='#ddd'; this.alt='Image not found: assets/theFeastScreenshot.png'">
                 <div class="project-name">The Feast Project</div>
             </div>
-            <div class="grid-item" data-project="The Feast Project">
-                <img src="assets/theFeast2.png" alt="The Feast Screenshot 2" onerror="this.style.backgroundColor='#ddd'; this.alt='Image not found: assets/theFeastScreenshot.png'">
+            <div class="grid-item" data-project="The Feast Project" data-video="dQw4w9WgXcQ">
+                <img src="assets/theFeastScreenshot.png" alt="The Feast Screenshot 2" onerror="this.style.backgroundColor='#ddd'; this.alt='Image not found: assets/theFeastScreenshot.png'">
                 <div class="project-name">The Feast Project</div>
             </div>
-            <div class="grid-item" data-project="The Feast Project">
-                <img src="assets/theFeast2_borders.png" alt="The Feast Screenshot 3" onerror="this.style.backgroundColor='#ddd'; this.alt='Image not found: assets/theFeastScreenshot.png'">
+            <div class="grid-item" data-project="The Feast Project" data-video="dQw4w9WgXcQ">
+                <img src="assets/theFeastScreenshot.png" alt="The Feast Screenshot 3" onerror="this.style.backgroundColor='#ddd'; this.alt='Image not found: assets/theFeastScreenshot.png'">
                 <div class="project-name">The Feast Project</div>
             </div>
             
             <!-- Row 2 -->
-            <div class="grid-item" data-project="Another Project">
+            <div class="grid-item" data-project="Another Project" data-video="jNQXAC9IVRw">
                 <img src="https://picsum.photos/400/400?random=4" alt="Project 2 Image 1">
                 <div class="project-name">Another Project</div>
             </div>
-            <div class="grid-item" data-project="Another Project">
+            <div class="grid-item" data-project="Another Project" data-video="jNQXAC9IVRw">
                 <img src="https://picsum.photos/400/400?random=5" alt="Project 2 Image 2">
                 <div class="project-name">Another Project</div>
             </div>
-            <div class="grid-item" data-project="Another Project">
+            <div class="grid-item" data-project="Another Project" data-video="jNQXAC9IVRw">
                 <img src="https://picsum.photos/400/400?random=6" alt="Project 2 Image 3">
                 <div class="project-name">Another Project</div>
             </div>
             
             <!-- Row 3 -->
-            <div class="grid-item" data-project="Third Project">
+            <div class="grid-item" data-project="Third Project" data-video="9bZkp7q19f0">
                 <img src="https://picsum.photos/400/400?random=7" alt="Project 3 Image 1">
                 <div class="project-name">Third Project</div>
             </div>
-            <div class="grid-item" data-project="Third Project">
+            <div class="grid-item" data-project="Third Project" data-video="9bZkp7q19f0">
                 <img src="https://picsum.photos/400/400?random=8" alt="Project 3 Image 2">
                 <div class="project-name">Third Project</div>
             </div>
-            <div class="grid-item" data-project="Third Project">
+            <div class="grid-item" data-project="Third Project" data-video="9bZkp7q19f0">
                 <img src="https://picsum.photos/400/400?random=9" alt="Project 3 Image 3">
                 <div class="project-name">Third Project</div>
             </div>
@@ -215,6 +215,15 @@
                             });
                         }
                     }, 10);
+                });
+                
+                // Add click event to navigate to video page
+                item.addEventListener('click', function() {
+                    const projectName = this.getAttribute('data-project');
+                    const videoId = this.getAttribute('data-video');
+                    
+                    // Navigate to video page with parameters
+                    window.location.href = `video.html?project=${encodeURIComponent(projectName)}&video=${videoId}`;
                 });
             });
             
