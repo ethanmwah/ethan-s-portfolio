@@ -32,13 +32,15 @@
         }
 
         .title-section h1 {
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
             font-size: 2.5em;
             color: #333;
             margin-bottom: 10px;
-            font-weight: 300;
+            font-weight: bold;
         }
 
         .title-section p {
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
             font-size: 1.2em;
             color: #666;
             font-weight: 400;
@@ -50,6 +52,7 @@
             gap: 0;
             width: 100%;
             margin-top: 40px; /* Additional spacing from title */
+            padding-bottom: 80px; /* Add padding to prevent bottom row overlap */
         }
 
         .grid-item {
@@ -102,7 +105,7 @@
             opacity: 1;
             /* Reduced upward movement to prevent title obstruction */
             transform: translateY(-15px);
-            margin-bottom: 45px; /* Adjusted margin */
+            margin-bottom: 70px; /* Increased margin to prevent row overlap */
         }
 
         /* Special handling for first row to prevent title obstruction */
@@ -111,7 +114,7 @@
         .row-active .grid-item:nth-child(3).active-row-item {
             /* First row moves down instead of up to avoid title */
             transform: translateY(10px);
-            margin-bottom: 30px;
+            margin-bottom: 70px; /* Consistent spacing for first row */
         }
 
         .row-active .grid-item.active-row-item .project-name {
@@ -167,13 +170,13 @@
 <body>
     <div class="container">
         <div class="title-section">
-            <h1>Ethan Thompson Portfolio</h1>
-            <p>Projects and associated content.</p>
+            <h1>Three-Column Image Grid</h1>
+            <p>Images and videos displayed in rows of three with no borders</p>
         </div>
         
         <div class="image-grid" id="imageGrid">
             <!-- Row 1 -->
-            <div class="grid-item" data-project="The Feast Project" data-video="lJh81aj_yEA&t=526s">
+            <div class="grid-item" data-project="The Feast Project" data-video="dQw4w9WgXcQ">
                 <img src="assets/theFeast2_borders.png" alt="The Feast Screenshot 1" onerror="this.style.backgroundColor='#ddd'; this.alt='Image not found: assets/theFeastScreenshot.png'">
                 <div class="project-name">The Feast Project</div>
             </div>
